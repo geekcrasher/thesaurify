@@ -1,12 +1,10 @@
-import { Button } from "@/components/ui/button"
+import Home from "@/components/Home"
 
 function App() {
 
   return (
-    <main className="min-h-screen w-full flex flex-col p-4">
-      <Button className="w-20 h-8">
-        Hello
-      </Button>
+    <main className="min-h-screen w-full flex flex-col items-center justify-center p-4">
+      <Home />
     </main>
   )
 }
