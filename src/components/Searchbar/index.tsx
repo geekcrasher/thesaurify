@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Search } from "lucide-react";
+import { useWord } from "@/context/WordContext";
 
 
 const formSchema = z.object({
@@ -24,6 +25,8 @@ const formSchema = z.object({
 
 const SearchBar = () => {
 
+  const { setKeyword } = useWord()
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,7 +35,11 @@ const SearchBar = () => {
   })
 
   const onSubmit = (values: z.infer<typeof formSchema>): void => {
-    console.log(values.word)
+    try {
+      setKeyword(values.word)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -47,7 +54,7 @@ const SearchBar = () => {
                 <FormControl >
                   <div className="flex w-full h-fit relative">
                     <Input
-                      className="h-14 rounded-xl border-0 bg-gray-100 text-lg font-bold font-serif placeholder:text-gray-400 placeholder:font-normal"
+                      className="h-14 rounded-xl border-0 text-[#333] bg-gray-100 text-lg font-bold placeholder:text-base placeholder:text-gray-400 placeholder:font-normal"
                       placeholder="Search Dictionary"
                       {...field}
                     />
@@ -58,7 +65,7 @@ const SearchBar = () => {
               </FormItem>
             )}
           />
-          {/* <Button type="submit">Submit</Button> */}
+          <Button type="submit" className="sr-only">Submit</Button>
         </form>
       </Form>
     </>
