@@ -1,8 +1,8 @@
-import axios, { AxiosResponse, AxiosError } from "axios"
+import axios, { AxiosError } from "axios"
 
-export const getWordDefinition = async (word: string): Promise<unknown> => {
+export const getWordDefinition = async (word: string) => {
   try {
-    const response: AxiosResponse<unknown> = await axios.get(
+    const response = await axios.get(
       `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`,
       {
         headers: {
