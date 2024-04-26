@@ -17,6 +17,11 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        inter: ["Inter"],
+        inconsolata: ["Inconsolata"],
+        lora: ["Lora"],
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
