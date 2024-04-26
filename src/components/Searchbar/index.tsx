@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage,
+  // FormDescription,
+  // FormLabel,
+  // FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Search } from "lucide-react";
@@ -18,7 +18,7 @@ import { useWord } from "@/context/WordContext";
 
 
 const formSchema = z.object({
-  word: z.string().min(2, {
+  word: z.string().min(1, {
     message: "Please enter a word",
   }).toLowerCase(),
 })
@@ -45,7 +45,7 @@ const SearchBar = () => {
   return (
     <>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="">
           <FormField
             control={form.control}
             name="word"
@@ -54,7 +54,7 @@ const SearchBar = () => {
                 <FormControl >
                   <div className="flex w-full h-fit relative">
                     <Input
-                      className="h-14 rounded-xl border-0 text-[#333] bg-gray-100 text-lg font-bold placeholder:text-base placeholder:text-gray-400 placeholder:font-normal"
+                      className="h-14 rounded-xl border-0 text-[#333] bg-gray-100/60 text-lg font-bold placeholder:text-base placeholder:text-gray-400 placeholder:font-normal"
                       placeholder="Search Dictionary"
                       {...field}
                     />
