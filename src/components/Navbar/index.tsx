@@ -1,41 +1,33 @@
 import { BookType, Moon } from "lucide-react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { Label } from "@/components/ui/label"
-import { Switch } from "@/components/ui/switch"
+import { Button } from "../ui/button";
+import { useNavigate } from "react-router-dom";
+import { Input } from "../ui/input";
 
 const Navbar = () => {
+
+  const navigate = useNavigate()
+
+  const navigateToHomePage = (): void => {
+    navigate("/")
+    sessionStorage.clear()
+  }
+
   return (
     <>
-      <nav className="flex items-center justify-between h-fit py-1">
-        <h2 className="flex items-center gap-2  cursor-pointer font-lora font-semibold text-[#a445ed]">
-          <BookType className="" />
-          Thesaurify
-        </h2>
-        <section className="flex items-center gap-8">
-          <Select>
-            <SelectTrigger className="w-[120px] border-0">
-              <SelectValue placeholder="Typeface" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="light">Sans Serif</SelectItem>
-              <SelectItem value="dark">Serif</SelectItem>
-              <SelectItem value="system">Monospace</SelectItem>
-            </SelectContent>
-          </Select>
-          <div className="h-8 w-[1px] bg-gray-200"></div>
-          <section className="flex items-center space-x-4">
-            <Switch id="dark-mode" />
-            <Label htmlFor="dark-mode" className="cursor-pointer">
-              <Moon className="w-5 h-5 text-gray-400" />
-            </Label>
-          </section>
-        </section>
+      <nav className="fixed z-10 flex items-center sm:justify-center bg-white w-full h-20 shadow-sm">
+        <div className="flex items-center justify-between w-full sm:w-[70rem]">
+          <Button
+            onClick={navigateToHomePage}
+            className="flex items-center gap-2 tracking-tight text-xl cursor-pointer font-inconsolata font-bold text-[#c88df2] bg-transparent hover:bg-transparent outline-none border-0  "
+          >
+            <BookType className="h-8 w-8" />
+            Thesaurify
+          </Button>
+
+          {/* <Button className="bg-white hover:bg-transparent ">
+            <Moon className="w-5 h-5 text-gray-400" />
+          </Button> */}
+        </div>
       </nav>
     </>
   );
