@@ -1,4 +1,4 @@
-import { BookType, Moon } from "lucide-react";
+import { BookType } from "lucide-react";
 import { Button } from "../ui/button";
 import { useNavigate } from "react-router-dom";
 
