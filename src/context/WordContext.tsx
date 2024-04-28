@@ -1,6 +1,8 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import { getWordDefinition } from "@/api";
 import { type Meaning } from "@/lib/types";
+import { useToast } from "@/components/ui/use-toast"
+import { AxiosError } from "axios";
 
 
 export type WordInfo = {
@@ -28,6 +30,8 @@ export const WordContextProvider = ({ children }: { children: React.ReactNode })
   const [wordInfo, setWordInfo] = useState<WordInfo | null>(null)
   const [keyword, setKeyword] = useState('')
 
+  const { toast } = useToast()
+
   useEffect(() => {
     const getWordInfo = async () => {
       if (keyword) {
@@ -37,13 +41,19 @@ export const WordContextProvider = ({ children }: { children: React.ReactNode })
             setWordInfo(response[0])
             sessionStorage.setItem('wordInfo', JSON.stringify(response[0]))
           }
-        } catch (error) {
-          console.log(error)
+        } catch (error: unknown) {
+          if (error instanceof AxiosError) {
+            console.log(error);
+            toast({
+              title: "Uh oh! Something went wrong.",
+              description: `${error.response?.data?.message}`,
+            })
+          }
         }
       }
     }
     getWordInfo()
-  }, [keyword])
+  }, [keyword, toast])
 
   const searchWordData = sessionStorage.getItem("wordInfo") || null
   const wordInfoData: WordInfo = searchWordData && JSON.parse(searchWordData)
