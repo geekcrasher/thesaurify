@@ -13,12 +13,11 @@ export type WordInfo = {
 
 type WordContextType = {
   wordInfo: WordInfo | null,
-  keyword: string,
   setKeyword: React.Dispatch<React.SetStateAction<string>>
+  wordInfoData: WordInfo
 }
 
 const WordContext = createContext<WordContextType | null>(null)
-
 
 export const useWord = () => {
   return useContext(WordContext) as WordContextType
@@ -36,7 +35,7 @@ export const WordContextProvider = ({ children }: { children: React.ReactNode })
           const response = await getWordDefinition(keyword)
           if (response && response[0]) {
             setWordInfo(response[0])
-            console.log(response[0])
+            sessionStorage.setItem('wordInfo', JSON.stringify(response[0]))
           }
         } catch (error) {
           console.log(error)
@@ -46,8 +45,11 @@ export const WordContextProvider = ({ children }: { children: React.ReactNode })
     getWordInfo()
   }, [keyword])
 
+  const searchWordData = sessionStorage.getItem("wordInfo") || null
+  const wordInfoData: WordInfo = searchWordData && JSON.parse(searchWordData)
+
   return (
-    <WordContext.Provider value={{ wordInfo, keyword, setKeyword }}>
+    <WordContext.Provider value={{ wordInfo, setKeyword, wordInfoData }}>
       {children}
     </WordContext.Provider>
   )
