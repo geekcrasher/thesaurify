@@ -1,7 +1,6 @@
 import { BookType, Moon } from "lucide-react";
 import { Button } from "../ui/button";
 import { useNavigate } from "react-router-dom";
-import { Input } from "../ui/input";
 
 const Navbar = () => {
 
