@@ -22,10 +22,6 @@ const Navbar = () => {
             <BookType className="h-8 w-8" />
             Thesaurify
           </Button>
-
-          {/* <Button className="bg-white hover:bg-transparent ">
-            <Moon className="w-5 h-5 text-gray-400" />
-          </Button> */}
         </div>
       </nav>
     </>
