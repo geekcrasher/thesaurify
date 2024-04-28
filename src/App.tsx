@@ -1,10 +1,12 @@
-import Home from "@/components/Home"
+import { Outlet } from "react-router-dom"
+import Navbar from "./components/Navbar"
 
 function App() {
 
   return (
-    <main className="min-h-screen w-full flex flex-col items-center justify-center p-4">
-      <Home />
+    <main className="min-h-screen w-full flex flex-col relative">
+      <Navbar />
+      <Outlet />
     </main>
   )
 }
