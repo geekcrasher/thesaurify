@@ -17,7 +17,7 @@ const Meaning = ({ word }: MeaningProps) => {
       <ul className="list-disc list-outside space-y-4 mt-4">
         {word.definitions.map((keyword, index) => {
           return (
-            <li key={index} className="ml-8 text-black/90 marker:text-[#b23fea] marker:text-xs">
+            <li key={index} className="ml-8 text-black text-[0.9rem] font-inter marker:text-[#b23fea] marker:text-xs">
               {keyword.definition}
               {keyword.example && <span className="block mt-2 text-gray-500/70">"{keyword?.example}"</span>}
             </li>
