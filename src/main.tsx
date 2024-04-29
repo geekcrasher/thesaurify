@@ -12,6 +12,7 @@ import {
 import Home from './components/Home/index.tsx'
 import Hero from './components/Hero/index.tsx'
 import { WordContextProvider } from './context/WordContext.tsx'
+import PageNotFound from './components/PageNotFound/index.tsx'
 
 
 const router = createBrowserRouter(
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
     <Route path='/' element={<App />}>
       <Route index path='/' element={<Hero />} />
       <Route path='search' element={<Home />} />
+      <Route path='*' element={<PageNotFound />} />
     </Route>
   )
 )
